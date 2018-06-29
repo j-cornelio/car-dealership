@@ -1,0 +1,24 @@
+frelance project Marshal Realty
+create Rent tracking app
+
+
+let current = state[state.length - 1];
+current
+
+action.amount
+
+-----------------------------
+
+var current = state[state.length - 1];
+
+if(current.month === action.amount.month){
+    var newO = null;
+
+	newO = {
+        ...current,
+        ['date' + 2]: action.amount.date1,
+        ['payment' + 2: action.amount.payment1,
+    }
+    console.clear();
+    newO
+}
