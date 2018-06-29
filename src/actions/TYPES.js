@@ -2,6 +2,9 @@ export const FETCH_INVENTORY 			= 'FETCH_INVENTORY';
 export const POST_INVENTORY 			= 'POST_INVENTORY';
 export const ADD_INVENTORY 				= 'ADD_INVENTORY';
 
+export const FETCH_USER 				= 'FETCH_USER';
+export const FETCH_USER_FULFILLED 		= 'FETCH_USER_FULFILLED';
+
 export const FETCH_AMOUNT_SUCCESS 		= 'FETCH_AMOUNT_SUCCESS';
 export const AMOUNT_IS_LOADING 			= 'AMOUNT_IS_LOADING';
 

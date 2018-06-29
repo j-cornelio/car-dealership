@@ -1,14 +1,17 @@
-import { Observable } 			     from 'rxjs';
-import { combineEpics } 			   from 'redux-observable';
-import { single, multiple, addRent } 	    from "../actions/inventoryActions";
+import { Observable } 			         from 'rxjs';
+import { combineEpics } 			       from 'redux-observable';
+import { fetchUserFulfilled, clear } from '../actions/inventoryActions';
 
-function rentReducerEpic(action$, store) {
-  return action$.ofType('ADD')
-    .switchMap(({type, amount, id}) => {
-      console.log('EPIC AMOUNT ==> ', amount);
+const fetchUserEpic = (action$, store) => (
+  action$.ofType('FETCH_USER')
+    .switchMap(( { payload } ) => { 
+      //const users = store.getState().users;
+console.log('fetching')
+      return Observable.of( fetchUserFulfilled(payload) ).delay(2222)
+        
+    })
+)
 
-      return Observable.of( multiple(type, amount, id) );
-    });
-}
+export const rootEpic = combineEpics( fetchUserEpic );
 
-export const rootEpic = combineEpics( rentReducerEpic );
+
