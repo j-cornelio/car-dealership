@@ -2,51 +2,18 @@ import request          from 'superagent';
 import * as actionTypes from './actionTypes';
 
  /* eslint-disable */
-const APIURL      = 'http://rest.learncode.academy/api/ivonne/rent';
-const APIURLPOST  = 'http://rest.learncode.academy/api/ivonne/';
+const APIURL      = 'http://rest.learncode.academy/api/inventory/data';
+const APIURLPOST  = 'http://rest.learncode.academy/api/inventory/';
 
-export const addRent = (amount, id) => {
+export const addInventory = (amount, id) => {
   return {
-    type    : actionTypes.ADD_RENT,
+    type    : actionTypes.ADD_INVENTORY,
     amount,
     id
   }
 };
 
-export const multiple = (amount, id) => {
-  return {
-    type: 'MULTIPLE_ENTRY',
-    amount,
-    id
-  }
-};
-
-export const single = (payload) => {
-  return {
-    type: 'SINGLE_ENTRY',
-    payload
-  }
-};
-
-export const editRent = (month, id, amount, index, date) => {
-  return {
-    type    : actionTypes.EDIT_RENT,
-    id,
-    amount,
-    index,
-    date,
-    month
-  }
-};
-
-export const validate = (payload) => {
-  return {
-    type: actionTypes.VALIDATE,
-    payload
-  }
-};
-
-export const postAmounts = (data) => {
+export const postData = (data) => {
   return (dispatch) => {
     return request.post(APIURL) 
     	.send(data)
