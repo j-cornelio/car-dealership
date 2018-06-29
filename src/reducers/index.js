@@ -2,12 +2,9 @@ import { combineReducers } from 'redux';
 import { 
 	inventoryReducer, 
 	isAmountLoading, 
-	validate,
-	amountSet 
 } 							from './inventoryReducers';
 export default combineReducers({
 	inventory		: inventoryReducer,
-	rentAmount 		: amountSet,
 	isAmountLoading,
 })
 
