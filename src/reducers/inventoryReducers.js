@@ -10,14 +10,18 @@ export const inventoryReducer = (state=initalState, action={}) => {
 	    case TYPES.FETCH_USER:
 	      return {
 	        ...state,
-	        current: action.payload,
+	        inventory: [
+	        	action.payload
+	        ],
 	        loading: true
 	      }
 
 	    case TYPES.FETCH_USER_FULFILLED:
 	      return {
 	        ...state,
-	        current: action.payload,
+	        inventory: [
+	        		action.payload,
+	        ],
 	        loading: false
 	      }
 
