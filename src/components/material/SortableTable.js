@@ -20,10 +20,6 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 
 let counter = 0;
-function createData(name, calories, fat, carbs, protein) {
-  counter += 1;
-  return { id: counter, name, calories, fat, carbs, protein };
-}
 
 function getSorting(order, orderBy) {
   return order === 'desc'
@@ -32,11 +28,11 @@ function getSorting(order, orderBy) {
 }
 
 const columnData = [
-  { id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
-  { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
-  { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
-  { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
-  { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
+  { id: 'name', numeric: false, disablePadding: false, label: 'Manufactorer' },
+  { id: 'calories', numeric: true, disablePadding: false, label: 'Make' },
+  { id: 'fat', numeric: true, disablePadding: false, label: 'Model' },
+  { id: 'carbs', numeric: true, disablePadding: false, label: 'Year' },
+  { id: 'protein', numeric: true, disablePadding: false, label: 'xxx' },
 ];
 
 class EnhancedTableHead extends React.Component {
@@ -50,13 +46,6 @@ class EnhancedTableHead extends React.Component {
     return (
       <TableHead>
         <TableRow>
-          <TableCell padding="checkbox">
-            <Checkbox
-              indeterminate={numSelected > 0 && numSelected < rowCount}
-              checked={numSelected === rowCount}
-              onChange={onSelectAllClick}
-            />
-          </TableCell>
           {columnData.map(column => {
             return (
               <TableCell
@@ -85,7 +74,7 @@ class EnhancedTableHead extends React.Component {
       </TableHead>
     );
   }
-}
+}//
 
 EnhancedTableHead.propTypes = {
   numSelected: PropTypes.number.isRequired,
@@ -121,53 +110,6 @@ const toolbarStyles = theme => ({
   },
 });
 
-let EnhancedTableToolbar = props => {
-  const { numSelected, classes } = props;
-
-  return (
-    <Toolbar
-      className={classNames(classes.root, {
-        [classes.highlight]: numSelected > 0,
-      })}
-    >
-      <div className={classes.title}>
-        {numSelected > 0 ? (
-          <Typography color="inherit" variant="subheading">
-            {numSelected} selected
-          </Typography>
-        ) : (
-          <Typography variant="title" id="tableTitle">
-            Nutrition
-          </Typography>
-        )}
-      </div>
-      <div className={classes.spacer} />
-      <div className={classes.actions}>
-        {numSelected > 0 ? (
-          <Tooltip title="Delete">
-            <IconButton aria-label="Delete">
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
-        ) : (
-          <Tooltip title="Filter list">
-            <IconButton aria-label="Filter list">
-              <FilterListIcon />
-            </IconButton>
-          </Tooltip>
-        )}
-      </div>
-    </Toolbar>
-  );
-};
-
-EnhancedTableToolbar.propTypes = {
-  classes: PropTypes.object.isRequired,
-  numSelected: PropTypes.number.isRequired,
-};
-
-EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar);
-
 const styles = theme => ({
   root: {
     width: '100%',
@@ -190,19 +132,8 @@ class EnhancedTable extends React.Component {
       orderBy: 'calories',
       selected: [],
       data: [
-        createData('Cupcake', 305, 3.7, 67, 4.3),
-        createData('Donut', 452, 25.0, 51, 4.9),
-        createData('Eclair', 262, 16.0, 24, 6.0),
-        createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-        createData('Gingerbread', 356, 16.0, 49, 3.9),
-        createData('Honeycomb', 408, 3.2, 87, 6.5),
-        createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-        createData('Jelly Bean', 375, 0.0, 94, 0.0),
-        createData('KitKat', 518, 26.0, 65, 7.0),
-        createData('Lollipop', 392, 0.2, 98, 0.0),
-        createData('Marshmallow', 318, 0, 81, 2.0),
-        createData('Nougat', 360, 19.0, 9, 37.0),
-        createData('Oreo', 437, 18.0, 63, 4.0),
+        { id: 0, name: 'Ford', make: 'Mustang', model: 'GT', year: 2018 },
+        { id: 1, name: 'Lexus', make: 'ES 300', model: 'XXX', year: 2017 },
       ],
       page: 0,
       rowsPerPage: 5,
@@ -259,6 +190,10 @@ class EnhancedTable extends React.Component {
 
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
+  _edit = () => console.log('edit!')
+
+  _delete = () => console.log('delete!')
+
   render() {
     const { classes } = this.props;
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
@@ -266,7 +201,6 @@ class EnhancedTable extends React.Component {
 
     return (
       <Paper className={classes.root}>
-        <EnhancedTableToolbar numSelected={selected.length} />
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             <EnhancedTableHead
@@ -277,6 +211,7 @@ class EnhancedTable extends React.Component {
               onRequestSort={this.handleRequestSort}
               rowCount={data.length}
             />
+            
             <TableBody>
               {data
                 .sort(getSorting(order, orderBy))
@@ -287,22 +222,18 @@ class EnhancedTable extends React.Component {
                     <TableRow
                       hover
                       onClick={event => this.handleClick(event, n.id)}
-                      role="checkbox"
                       aria-checked={isSelected}
                       tabIndex={-1}
                       key={n.id}
                       selected={isSelected}
                     >
-                      <TableCell padding="checkbox">
-                        <Checkbox checked={isSelected} />
-                      </TableCell>
                       <TableCell component="th" scope="row" padding="none">
                         {n.name}
                       </TableCell>
-                      <TableCell numeric>{n.calories}</TableCell>
-                      <TableCell numeric>{n.fat}</TableCell>
-                      <TableCell numeric>{n.carbs}</TableCell>
-                      <TableCell numeric>{n.protein}</TableCell>
+                      <TableCell numeric>{n.make}</TableCell>
+                      <TableCell numeric>{n.model}</TableCell>
+                      <TableCell numeric>{n.year}</TableCell>
+                      <TableCell numeric><span onClick={this._edit}>pencil</span> <span onClick={this._delete}>trash</span></TableCell>
                     </TableRow>
                   );
                 })}

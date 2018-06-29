@@ -4,10 +4,7 @@ import SortableTable 	from '../material/SortableTable';
 
 const Inventory = () => (
    <div>
-   		<h1>Inventory</h1>
-   		 <Button variant="contained" color="primary">
-	      Hello World
-	    </Button>
+   		<h4>Inventory</h4>
 	    <SortableTable />
    </div>
 )
