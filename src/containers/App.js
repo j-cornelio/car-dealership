@@ -1,8 +1,8 @@
 import React 		from 'react';
-import Fix       	from '../components/fix/Fix';
+import Inventory       	from '../components/inventory/InventoryWrapper';
 
 const App = () => (
-   <Fix />
+   <Inventory />
 )
 
 export default App;
