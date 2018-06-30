@@ -14,7 +14,7 @@ class Inventory extends Component{
 	render(){
 		const { inventory } = this.props;
 		let content = null;
-  console.log('inventory: => ', inventory)
+ console.log('inventory: => ', inventory)
 
 		content = inventory.length === 0 ? <EmptyTable /> : <SortableTable inventory={inventory} />;
 

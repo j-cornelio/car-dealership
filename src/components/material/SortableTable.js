@@ -12,6 +12,7 @@ import Paper          from '@material-ui/core/Paper';
 import Tooltip        from '@material-ui/core/Tooltip';
 import DeleteIcon     from '@material-ui/icons/Delete';
 import Edit           from '@material-ui/icons/Edit';
+import EditDialog           from './EditDialog';
 
 function getSorting(order, orderBy) {
   return order === 'desc'
@@ -104,12 +105,7 @@ class EnhancedTable extends React.Component {
   componentDidMount(){
     this.setState( (prevState) => ({data : this.props.inventory}) )  
   }
-  componentWillReceiveProps(nextProps){
-    console.log('props inventory: ', this.props.inventory);
-    console.log('nextProps inventory: ', nextProps.inventory);
-
-    //if(nextProps.inventory !== this.props.inventory)
-    
+  componentWillReceiveProps(nextProps){    
     this.setState( () => ({data: nextProps.inventory}) )
   }
 
@@ -187,12 +183,11 @@ class EnhancedTable extends React.Component {
               {data
                 .sort(getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(n => {
+                .map( n => {
                   const isSelected = this.isSelected(n.id);
                   return (
                     <TableRow
                       hover
-                      onClick={event => this.handleClick(event, n.id)}
                       aria-checked={isSelected}
                       tabIndex={-1}
                       key={n.id}
@@ -204,7 +199,7 @@ class EnhancedTable extends React.Component {
                       <TableCell numeric>{n.make}</TableCell>
                       <TableCell numeric>{n.model}</TableCell>
                       <TableCell numeric>{n.year}</TableCell>
-                      <TableCell numeric><span onClick={this._edit}><Edit /></span> <span onClick={this._delete}><DeleteIcon /></span></TableCell>
+                      <TableCell numeric><EditDialog  {...n} /> <span onClick={this._delete}><DeleteIcon /></span></TableCell>
                     </TableRow>
                   );
                 })}
