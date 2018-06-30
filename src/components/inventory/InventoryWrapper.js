@@ -9,7 +9,9 @@ const Inventory = ({ loadUser }) => (
    <div>
    		<h4>Inventory</h4>
    		<Dialog />
-   		
+   		 <Button variant="contained" color="primary" onClick={loadUser}>
+	      Add New
+	    </Button>
 	    <SortableTable />
    </div>
 )//

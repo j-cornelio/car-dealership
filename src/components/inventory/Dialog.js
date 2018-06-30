@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import TextField from '@material-ui/core/TextField';
+import React, { Component }         from 'react';
+import { connect }                  from 'react-redux';
+import * as inventoryActions        from '../../actions/inventoryActions';
+import Button                       from '@material-ui/core/Button';
+import Dialog                       from '@material-ui/core/Dialog';
+import DialogActions                from '@material-ui/core/DialogActions';
+import DialogContent                from '@material-ui/core/DialogContent';
+import DialogContentText            from '@material-ui/core/DialogContentText';
+import DialogTitle                  from '@material-ui/core/DialogTitle';
+import TextField                    from '@material-ui/core/TextField';
 
 // const styles = theme => ({
 //   container: {
@@ -34,6 +36,7 @@ class AlertDialog extends Component {
 
   handlePost = (obj) => {
     console.log(obj);
+    this.props.saveProduct(obj)
   };
 
   handleClose = () => {
@@ -41,6 +44,7 @@ class AlertDialog extends Component {
   };
 
   render() {
+    const { saveProduct } = this.props;
 
     return (
       <div>
@@ -85,6 +89,16 @@ class AlertDialog extends Component {
       </div>
     );
   }
-}
+}//
 
-export default AlertDialog;
+const mapStateToProps = (state) => {  
+  return {}
+};
+
+const mapDispatchProps = (dispatch) => {
+  return {
+    saveProduct: (payload) => dispatch(inventoryActions.postInventory(payload)),
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchProps)(AlertDialog);

@@ -5,11 +5,28 @@ import * as TYPES from './TYPES';
 const APIURL      = 'http://rest.learncode.academy/api/inventory/data';
 const APIURLPOST  = 'http://rest.learncode.academy/api/inventory/';
 
-export const postInventory = (login) => { 
+export const postInventory = (payload) => { 
   return {
-    type: TYPES.POST_INVENTORY
+    type: TYPES.POST_INVENTORY,
+    payload,
   }
 };
+
+export const uploadProductFulfilled = (payload) => { 
+  console.log('uploadProductFulfilled payload - ', payload)
+  return {
+    type: TYPES.UPLOAD_PROD_FULFILLED,
+    payload,
+  }
+};
+
+export const uploadProductRejected = (payload) => { 
+  return {
+    type: TYPES.UPLOAD_PROD_REJECTED,
+    payload,
+  }
+};
+
 
 export const fetchUserActions = (login) => { 
   return {
