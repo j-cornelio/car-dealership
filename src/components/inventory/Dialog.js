@@ -5,19 +5,12 @@ import Button                       from '@material-ui/core/Button';
 import Dialog                       from '@material-ui/core/Dialog';
 import DialogActions                from '@material-ui/core/DialogActions';
 import DialogContent                from '@material-ui/core/DialogContent';
-import DialogContentText            from '@material-ui/core/DialogContentText';
 import DialogTitle                  from '@material-ui/core/DialogTitle';
-import TextField                    from '@material-ui/core/TextField';
 
 // const styles = theme => ({
 //   container: {
 //     display: 'flex',
 //     flexWrap: 'wrap',
-//   },
-//   textField: {
-//     marginLeft: theme.spacing.unit,
-//     marginRight: theme.spacing.unit,
-//     width: 200,
 //   },
 // });
 
@@ -44,7 +37,7 @@ class AlertDialog extends Component {
   };
 
   render() {
-    const { saveProduct, inventory } = this.props;
+    const { inventory } = this.props;
 console.log('P ', inventory)
     return (
       <div>

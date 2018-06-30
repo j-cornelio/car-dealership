@@ -1,6 +1,6 @@
 import { Observable } 			         from 'rxjs';
 import { combineEpics } 			       from 'redux-observable';
-import { ajax }                      from 'rxjs/observable/dom/ajax'
+//import { ajax }                      from 'rxjs/observable/dom/ajax'
 import { 
   fetchUserFulfilled, 
   uploadProductFulfilled,
@@ -14,8 +14,8 @@ import {
       //   { 'Content-Type': 'application/json' }
       // )
 
-const APIURL      = 'http://rest.learncode.academy/api/inventory/data';
-const APIURLPOST  = 'http://rest.learncode.academy/api/inventory/';
+// const APIURL      = 'http://rest.learncode.academy/api/inventory/data';
+// const APIURLPOST  = 'http://rest.learncode.academy/api/inventory/';
 const URL = 'http://rest.learncode.academy/api/amazon/inventory';
 
 const fetchUserEpic = (action$, store) => (

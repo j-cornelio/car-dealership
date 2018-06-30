@@ -12,7 +12,6 @@ import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Edit from '@material-ui/icons/Edit';
-import { connect }        from 'react-redux';
 
 function getSorting(order, orderBy) {
   return order === 'desc'
