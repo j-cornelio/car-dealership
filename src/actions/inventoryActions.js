@@ -5,6 +5,12 @@ import * as TYPES from './TYPES';
 const APIURL      = 'http://rest.learncode.academy/api/inventory/data';
 const APIURLPOST  = 'http://rest.learncode.academy/api/inventory/';
 
+export const postInventory = (login) => { 
+  return {
+    type: TYPES.POST_INVENTORY
+  }
+};
+
 export const fetchUserActions = (login) => { 
   return {
     type: TYPES.FETCH_USER,

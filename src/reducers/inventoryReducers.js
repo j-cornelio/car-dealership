@@ -12,7 +12,7 @@ export const inventoryReducer = (state=initalState, action={}) => {
 	        ...state,
 	        inventory: [
 	        	action.payload
-	        ],
+	        ], 
 	        loading: true
 	      }
 

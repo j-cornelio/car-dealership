@@ -9,9 +9,7 @@ const Inventory = ({ loadUser }) => (
    <div>
    		<h4>Inventory</h4>
    		<Dialog />
-   		 <Button variant="contained" color="primary" onClick={loadUser}>
-	      Add New
-	    </Button>
+   		
 	    <SortableTable />
    </div>
 )//
@@ -19,7 +17,7 @@ const Inventory = ({ loadUser }) => (
 const mapStateToProps = (state) => {
 	console.log('STATE: => ', state)
 	
-	return {	
+	return {
 			
 	}
 };

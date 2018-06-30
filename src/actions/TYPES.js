@@ -1,6 +1,6 @@
-export const FETCH_INVENTORY 			= 'FETCH_INVENTORY';
+export const SAVE_PRODUCT 				= 'SAVE_PRODUCT';
 export const POST_INVENTORY 			= 'POST_INVENTORY';
-export const ADD_INVENTORY 				= 'ADD_INVENTORY';
+export const FETCH_INVENTORY 			= 'FETCH_INVENTORY';
 
 export const FETCH_USER 				= 'FETCH_USER';
 export const FETCH_USER_FULFILLED 		= 'FETCH_USER_FULFILLED';
