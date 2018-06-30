@@ -16,7 +16,6 @@ import DialogTitle                  from '@material-ui/core/DialogTitle';
 
 class AlertDialog extends Component {
   static defaultProps = {
-    inventory: [],
     saveProduct: function(){},
   }
 
@@ -42,8 +41,6 @@ class AlertDialog extends Component {
   };
 
   render() {
-    const { inventory } = this.props;
-console.log('P ', inventory)
     return (
       <div>
         <Button variant="contained" color="primary" onClick={this.handleClickOpen}>Add New</Button>
@@ -93,10 +90,7 @@ console.log('P ', inventory)
 }//
 
 const mapStateToProps = (state) => {  
-  //console.log('STATE: => ', state)
-  return {
-    inventory: state.inventory.inventory
-  }
+  return {  }
 };
 
 const mapDispatchProps = (dispatch) => {

@@ -1,32 +1,34 @@
-import React, { Component } 					from 'react';
-import { connect }                  from 'react-redux';
+import React, { Component } 	from 'react';
+import { connect }              from 'react-redux';
 import SortableTable 			from '../material/SortableTable';
 import Dialog 					from './Dialog';
+import * as inventoryActions    from '../../actions/inventoryActions';
 
-const URL = 'http://rest.learncode.academy/api/dealership/inventory';
+const EmptyTable = () => <h4>Please enter inventory data</h4>;//
 
 class Inventory extends Component{
-	async componentDidMount(){
-		const res = await fetch(URL);
-		const data = await res.json();
-
-		console.log('res ', data);
+	componentDidMount(){
+		this.props.fetchProduct()
 	}
 
 	render(){
 		const { inventory } = this.props;
+		let content = null;
+  console.log('inventory: => ', inventory)
+
+		content = inventory.length === 0 ? <EmptyTable /> : <SortableTable inventory={inventory} />;
+
 		return (
 		   <div>
 		   		<h4>Inventory</h4>
 		   		<Dialog />
-			    <SortableTable inventory={inventory} />
+			    {content}
 		   </div>
 		)
 	}
-}
+}//
 
 const mapStateToProps = (state) => {  
-  //console.log('STATE: => ', state)
   return {
     inventory: state.inventory.inventory
   }
@@ -34,6 +36,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchProps = (dispatch) => {
   return {
+    fetchProduct: (payload) => dispatch(inventoryActions.fetchInventory(payload)),
   }
 };
 

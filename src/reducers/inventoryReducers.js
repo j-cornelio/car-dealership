@@ -24,6 +24,22 @@ export const inventoryReducer = (state=initalState, action={}) => {
 	        uploading: false,
 	      }
 
+	    case TYPES.FETCH_INVENTORY:
+	      return {
+	        ...state,
+	        loading: true,
+	      }
+
+	    case TYPES.FETCH_INVENTORY_FULFILLED:
+	      return {
+	        ...state,
+	        inventory: [
+	        	...state.inventory,
+	        	...action.payload
+	        ],
+	        loading: false,
+	      }
+
 		default: 
 			return state;
 	}

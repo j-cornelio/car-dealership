@@ -1,32 +1,40 @@
 import { Observable } 			         from 'rxjs';
 import { combineEpics } 			       from 'redux-observable';
+import * as TYPES from '../actions/TYPES';
+import { FETCH_INVENTORY_FULFILLED } from '../actions/TYPES';
 //import { ajax }                      from 'rxjs/observable/dom/ajax'
 import { 
-  fetchUserFulfilled, 
+  fetchInventoryFulfilled, 
   postProductFulfilled,
   postProductRejected 
 }                                     from '../actions/inventoryActions';
 
+const URL = 'http://rest.learncode.academy/api/dealership/inventory';
 
       // .post(
       //   'http://rest.learncode.academy/api/amazon/inventory', 
       //   payload,
       //   { 'Content-Type': 'application/json' }
       // )
+//const D = [{ id: 0, name: 'Ford', make: 'Mustang', model: 'GT', year: 2018 }]
 
-const URL = 'http://rest.learncode.academy/api/dealership/inventory';
+const api = {
+  fetchUser: id => {
+    const request = fetch(URL)
+      .then(response => response.json());
+    return Observable.from(request);
+  }
+};
 
-const fetchUserEpic = (action$, store) => (
-  action$.ofType('FETCH_USER')
-    .switchMap(( { payload } ) => { 
-      //const users = store.getState().users;
-      return Observable.of( fetchUserFulfilled(payload) ).delay(2222)
-        
-    })
-)
+const fetchInventoryEpic = (action$) => 
+  action$.ofType( TYPES.FETCH_INVENTORY )
+  .mergeMap(action =>
+      api.fetchUser(action.payload) // This returns our Observable wrapping the Promise
+        .map(payload => ({ type: FETCH_INVENTORY_FULFILLED, payload }))
+    );
 
 const postInventoryEpic = action$ =>
-  action$.ofType('POST_INVENTORY')
+  action$.ofType( TYPES.POST_INVENTORY )
     .mergeMap(action =>
       Observable.ajax.post(URL, action.payload)
         .map(response => postProductFulfilled(response))
@@ -47,4 +55,4 @@ const postInventoryEpic = action$ =>
 //     })
 // )
 
-export const rootEpic = combineEpics( fetchUserEpic, postInventoryEpic );
+export const rootEpic = combineEpics( fetchInventoryEpic, postInventoryEpic );

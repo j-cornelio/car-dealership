@@ -1,17 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React          from 'react';
+import PropTypes      from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
+import Table          from '@material-ui/core/Table';
+import TableBody      from '@material-ui/core/TableBody';
+import TableCell      from '@material-ui/core/TableCell';
+import TableHead      from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
-import TableRow from '@material-ui/core/TableRow';
+import TableRow       from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
-import Paper from '@material-ui/core/Paper';
-import Tooltip from '@material-ui/core/Tooltip';
-import DeleteIcon from '@material-ui/icons/Delete';
-import Edit from '@material-ui/icons/Edit';
+import Paper          from '@material-ui/core/Paper';
+import Tooltip        from '@material-ui/core/Tooltip';
+import DeleteIcon     from '@material-ui/icons/Delete';
+import Edit           from '@material-ui/icons/Edit';
 
 function getSorting(order, orderBy) {
   return order === 'desc'
@@ -101,8 +101,15 @@ class EnhancedTable extends React.Component {
     };
   }
 
+  componentDidMount(){
+    this.setState( (prevState) => ({data : this.props.inventory}) )  
+  }
   componentWillReceiveProps(nextProps){
-    console.log('nextProps: ', nextProps);
+    console.log('props inventory: ', this.props.inventory);
+    console.log('nextProps inventory: ', nextProps.inventory);
+
+    //if(nextProps.inventory !== this.props.inventory)
+    
     this.setState( () => ({data: nextProps.inventory}) )
   }
 
