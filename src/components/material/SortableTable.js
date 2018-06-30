@@ -95,13 +95,15 @@ class EnhancedTable extends React.Component {
       order: 'asc',
       orderBy: 'calories',
       selected: [],
-      data: [
-        { id: 0, name: 'Ford', make: 'Mustang', model: 'GT', year: 2018 },
-        { id: 1, name: 'Lexus', make: 'ES 300', model: 'XXX', year: 2017 },
-      ],
+      data: [],
       page: 0,
       rowsPerPage: 5,
     };
+  }
+
+  componentWillReceiveProps(nextProps){
+    console.log('nextProps: ', nextProps);
+    this.setState( () => ({data: nextProps.inventory}) )
   }
 
   handleRequestSort = (event, property) => {
@@ -159,6 +161,7 @@ class EnhancedTable extends React.Component {
   _delete = () => console.log('delete!')
 
   render() {
+    console.log('TABLE ', this.props)
     const { classes } = this.props;
     const { data, order, orderBy, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
@@ -189,7 +192,7 @@ class EnhancedTable extends React.Component {
                       selected={isSelected}
                     >
                       <TableCell component="th" scope="row" padding="none">
-                        {n.name}
+                        {n.manufacturer}
                       </TableCell>
                       <TableCell numeric>{n.make}</TableCell>
                       <TableCell numeric>{n.model}</TableCell>
