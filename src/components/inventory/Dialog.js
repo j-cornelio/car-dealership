@@ -15,21 +15,26 @@ import DialogTitle                  from '@material-ui/core/DialogTitle';
 // });
 
 class AlertDialog extends Component {
+  static defaultProps = {
+    inventory: [],
+    saveProduct: function(){},
+  }
+
   state = {
     open: false,
   };
-  manufacturer =null;
+  manufacturer=null;
   make=null;
   model=null;
   year=null;
 
   handleClickOpen = () => {
-    this.setState({ open: true });
+    this.setState( (prevState) => ({ open: true }) );
   };
 
-  handlePost = (obj) => {
-    console.log(obj);
-    this.props.saveProduct(obj)
+  handlePost = (data) => {
+    console.log(data);
+    this.props.saveProduct(data)
   };
 
   handleClose = () => {
@@ -41,7 +46,7 @@ class AlertDialog extends Component {
 console.log('P ', inventory)
     return (
       <div>
-        <Button onClick={this.handleClickOpen}>Open alert dialog</Button>
+        <Button variant="contained" color="primary" onClick={this.handleClickOpen}>Add New</Button>
         
         <Dialog
           open={this.state.open}
@@ -62,14 +67,17 @@ console.log('P ', inventory)
                 <input ref={node => this.model = node} type="text" name="model" />
                 <br />
                 <label htmlFor="year">Year</label>
-                <input ref={node => this.year = this.node} type="text" name="year" />
+                <input ref={node => this.year = node} type="text" name="year" />
                 <br />
               </form>
           </DialogContent>
           <DialogActions>
             <Button onClick={() => {
               this.handlePost({
-                manufacturer: this.manufacturer.value
+                manufacturer: this.manufacturer.value,
+                make: this.make.value,
+                model: this.model.value,
+                year: this.year.value,
               })
             }} color="primary">
               Save
@@ -85,7 +93,7 @@ console.log('P ', inventory)
 }//
 
 const mapStateToProps = (state) => {  
-  console.log('STATE: => ', state)
+  //console.log('STATE: => ', state)
   return {
     inventory: state.inventory.inventory
   }
