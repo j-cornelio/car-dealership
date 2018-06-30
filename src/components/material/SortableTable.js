@@ -161,7 +161,7 @@ class EnhancedTable extends React.Component {
   _delete = () => console.log('delete!')
 
   render() {
-    console.log('TABLE ', this.props)
+    //console.log('TABLE ', this.props)
     const { classes } = this.props;
     const { data, order, orderBy, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);

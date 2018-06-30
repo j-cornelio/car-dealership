@@ -1,9 +1,4 @@
-import request          from 'superagent';
 import * as TYPES from './TYPES';
-
- /* eslint-disable */
-const APIURL      = 'http://rest.learncode.academy/api/inventory/data';
-const APIURLPOST  = 'http://rest.learncode.academy/api/inventory/';
 
 export const postInventory = (payload) => { 
   return {
@@ -12,88 +7,30 @@ export const postInventory = (payload) => {
   }
 };
 
-export const uploadProductFulfilled = (payload) => { 
+export const postProductFulfilled = (payload) => { 
   return {
-    type: TYPES.UPLOAD_PROD_FULFILLED,
+    type: TYPES.POST_PROD_FULFILLED,
     payload: payload.response
   }
 };
 
-export const uploadProductRejected = (payload) => { 
+export const postProductRejected = (payload) => { 
   return {
-    type: TYPES.UPLOAD_PROD_REJECTED,
+    type: TYPES.POST_PROD_REJECTED,
     payload,
   }
 };
 
-
-export const fetchUserActions = (login) => { 
+export const fetchInventory = (payload) => { 
   return {
-    type: TYPES.FETCH_USER,
-    payload: login
+    type: TYPES.FETCH_INVENTORY,
+    payload,
   }
 };
 
-export const fetchUserFulfilled = (user) => { 
+export const fetchInventoryFulfilled = (payload) => { 
   return {
-    type: 'FETCH_USER_FULFILLED',
-    payload: {user: 'big vlad'}
+    type: TYPES.FETCH_INVENTORY_FULFILLED,
+    payload,
   }
 };
-
-export const addInventory = (amount, id) => {
-  return {
-    type    : TYPES.ADD_INVENTORY,
-    amount,
-    id
-  }
-};
-
-export const postData = (data) => {
-  return (dispatch) => {
-    return request.post(APIURL) 
-    	.send(data)
-      .then( response => { //also returns promise 
-     		console.log('%c rsonponse ', 'background:lime', JSON.stringify(response.body));
-      })
-  }
-};
-
-export const fetchData = () => {
-  return (dispatch) => {
-    dispatch( isAmountLoading(true) ); // immediate dispatch, loader
-
-    return request.get(APIURL) // asynch task returns promise obj
-      .then( response => { //also returns promise 
-        if(!response.ok){
-          throw Error(response.statusText);
-        }
-
-        dispatch( isAmountLoading(false) );
-
-     		console.log('%c RESPONSE ', 'background:lime', response.body);
-        return response; // returns to next chained then
-      })
-      .then( response => { 
-
-        dispatch( fetchAmountSuccess( response.body ) );
-
-      })
-      .catch( error => {
-        throw Error(error);
-      })
-  }
-};
-export const fetchAmountSuccess = (amount) => {
-  return {
-    type 						: TYPES.FETCH_AMOUNT_SUCCESS,
-    amount 					: amount,
-  }
-};
-export const isAmountLoading = (bool) => {
-  return {
-    type            : TYPES.AMOUNT_IS_LOADING,
-    isAmountLoading : bool
-  }
-};
- 

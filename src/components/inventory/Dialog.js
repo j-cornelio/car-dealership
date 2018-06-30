@@ -33,7 +33,7 @@ class AlertDialog extends Component {
   };
 
   handlePost = (data) => {
-    console.log(data);
+    //console.log(data);
     this.props.saveProduct(data)
   };
 

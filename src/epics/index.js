@@ -3,8 +3,8 @@ import { combineEpics } 			       from 'redux-observable';
 //import { ajax }                      from 'rxjs/observable/dom/ajax'
 import { 
   fetchUserFulfilled, 
-  uploadProductFulfilled,
-  uploadProductRejected 
+  postProductFulfilled,
+  postProductRejected 
 }                                     from '../actions/inventoryActions';
 
 
@@ -14,9 +14,7 @@ import {
       //   { 'Content-Type': 'application/json' }
       // )
 
-// const APIURL      = 'http://rest.learncode.academy/api/inventory/data';
-// const APIURLPOST  = 'http://rest.learncode.academy/api/inventory/';
-const URL = 'http://rest.learncode.academy/api/amazon/inventory';
+const URL = 'http://rest.learncode.academy/api/dealership/inventory';
 
 const fetchUserEpic = (action$, store) => (
   action$.ofType('FETCH_USER')
@@ -31,9 +29,9 @@ const postInventoryEpic = action$ =>
   action$.ofType('POST_INVENTORY')
     .mergeMap(action =>
       Observable.ajax.post(URL, action.payload)
-        .map(response => uploadProductFulfilled(response))
+        .map(response => postProductFulfilled(response))
         .catch(error => Observable.of(
-          uploadProductRejected(error)
+          postProductRejected(error)
         ))
     );
 
@@ -42,9 +40,9 @@ const postInventoryEpic = action$ =>
 //     .mergeMap( ({payload}) => {
       
 //       Observable.ajax.post(URL, action.payload)
-//         .map(response => uploadProductFulfilled(response))
+//         .map(response => postProductFulfilled(response))
 //         .catch(error => Observable.of(
-//           uploadProductRejected(error)
+//           postProductRejected(error)
 //         ))
 //     })
 // )
