@@ -6,6 +6,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Edit           from '@material-ui/icons/Edit';
+import { connect }              from 'react-redux';
+import * as inventoryActions        from '../../actions/inventoryActions';
 
 class AlertDialog extends React.Component {
   state = {
@@ -24,7 +26,7 @@ class AlertDialog extends React.Component {
 
   handleEdit = (data) => {
     console.log(data);
-    //this.props.saveProduct(data)
+    this.props.editProduct(data)
   };
 
   handleClose = () => {
@@ -32,7 +34,7 @@ class AlertDialog extends React.Component {
   };
 
   render() {
-    const { id, manufacturer, make, model, year } = this.props;
+    const { id, manufacturer, make, model, year, editProduct } = this.props;
 
     return (
       <span>
@@ -82,4 +84,14 @@ class AlertDialog extends React.Component {
   }
 }
 
-export default AlertDialog;
+const mapStateToProps = (state) => {  
+  return null
+};
+
+const mapDispatchProps = (dispatch) => {
+  return {
+    editProduct: (payload) => dispatch(inventoryActions.editInventory(payload)),
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchProps)(AlertDialog);

@@ -27,6 +27,13 @@ export const fetchInventory = (payload) => {
   }
 };
 
+export const editInventory = (payload) => { 
+  return {
+    type: TYPES.EDIT_INVENTORY,
+    payload,
+  }
+};
+
 export const fetchInventoryFulfilled = (payload) => { 
   return {
     type: TYPES.FETCH_INVENTORY_FULFILLED,

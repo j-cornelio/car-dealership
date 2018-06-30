@@ -35,6 +35,18 @@ export const inventoryReducer = (state=initalState, action={}) => {
 	        loading: true,
 	      }
 
+	    case TYPES.EDIT_INVENTORY:
+	      return {
+	        ...state,
+	        inventory: state.inventory.map( elem => {
+	        	if( elem.id === action.payload.id){
+	        		return action.payload
+	        	}
+	        	return elem;
+	        })
+
+	      }
+
 	    case TYPES.FETCH_INVENTORY_FULFILLED:
 	      return {
 	        ...state,
