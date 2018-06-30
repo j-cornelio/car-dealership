@@ -13,10 +13,9 @@ export const postInventory = (payload) => {
 };
 
 export const uploadProductFulfilled = (payload) => { 
-  console.log('uploadProductFulfilled payload - ', payload)
   return {
     type: TYPES.UPLOAD_PROD_FULFILLED,
-    payload,
+    payload: payload.response
   }
 };
 

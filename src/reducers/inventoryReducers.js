@@ -7,33 +7,22 @@ const initalState = {
 
 export const inventoryReducer = (state=initalState, action={}) => {
 	switch(action.type){
-	    case TYPES.FETCH_USER:
+
+	    case TYPES.POST_INVENTORY:
 	      return {
 	        ...state,
-	        loading: true
+	        uploading: true,
 	      }
 
 	    case TYPES.UPLOAD_PROD_FULFILLED:
 	      return {
 	        ...state,
-	        uploaded: true,
-	        data: action.data
-	      }
-
-	    case TYPES.FETCH_USER_FULFILLED:
-	      return {
-	        ...state,
 	        inventory: [
-	        		action.payload,
+	        	...state.inventory,
+	        	action.payload
 	        ],
-	        loading: false
+	        uploading: false,
 	      }
-
-		case 'FETCH_INVENTORY':
-			return state;
-
-		case 'ADD_INVENTORY':
-			return state;
 
 		default: 
 			return state;

@@ -44,8 +44,8 @@ class AlertDialog extends Component {
   };
 
   render() {
-    const { saveProduct } = this.props;
-
+    const { saveProduct, inventory } = this.props;
+console.log('P ', inventory)
     return (
       <div>
         <Button onClick={this.handleClickOpen}>Open alert dialog</Button>
@@ -92,7 +92,10 @@ class AlertDialog extends Component {
 }//
 
 const mapStateToProps = (state) => {  
-  return {}
+  console.log('STATE: => ', state)
+  return {
+    inventory: state.inventory.inventory
+  }
 };
 
 const mapDispatchProps = (dispatch) => {

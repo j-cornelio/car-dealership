@@ -38,17 +38,14 @@ const postInventoryEpic = action$ =>
     );
 
 // const postInventoryEpic = (action$, store) => (
-
 //    action$.ofType('POST_INVENTORY')
 //     .mergeMap( ({payload}) => {
-//       console.log('PAYLOAD ',payload)
-//       Observable.ajax({
-//                 method: 'POST',
-//                 url: 'http://rest.learncode.academy/api/inventory',
-//                 body: JSON.stringify(payload),
-//             })
+      
+//       Observable.ajax.post(URL, action.payload)
 //         .map(response => uploadProductFulfilled(response))
-//         .catch(error => Observable.of(uploadProductRejected(error)))
+//         .catch(error => Observable.of(
+//           uploadProductRejected(error)
+//         ))
 //     })
 // )
 
