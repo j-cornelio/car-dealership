@@ -14,10 +14,9 @@ export const postProductFulfilled = (payload) => {
   }
 };
 
-export const postProductRejected = (payload) => { 
+export const postProductRejected = () => { 
   return {
-    type: TYPES.POST_PROD_REJECTED,
-    payload,
+    type: TYPES.POST_PROD_ERROR
   }
 };
 
@@ -31,6 +30,13 @@ export const fetchInventory = (payload) => {
 export const fetchInventoryFulfilled = (payload) => { 
   return {
     type: TYPES.FETCH_INVENTORY_FULFILLED,
+    payload,
+  }
+};
+
+export const deleteInventory = (payload) => { 
+  return {
+    type: TYPES.DELETE_INVENTORY,
     payload,
   }
 };

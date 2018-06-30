@@ -3,6 +3,7 @@ import * as TYPES from '../actions/TYPES';
 const initalState = {
 	inventory: [],
 	loading: false,
+	error: false,
 };
 
 export const inventoryReducer = (state=initalState, action={}) => {
@@ -38,6 +39,18 @@ export const inventoryReducer = (state=initalState, action={}) => {
 	        	...action.payload
 	        ],
 	        loading: false,
+	      }
+
+	    case TYPES.FETCH_ERROR:
+	      return {
+	        ...state,
+	        error: true,
+	      }
+
+	    case TYPES.DELETE_INVENTORY:
+	      return {
+	        ...state,
+	        inventory: state.inventory.filter(item => item.id !== action.payload)
 	      }
 
 		default: 
