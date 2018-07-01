@@ -1,4 +1,4 @@
-import React                    from 'react';
+import React, { Component }     from 'react';
 import Button                   from '@material-ui/core/Button';
 import Dialog                   from '@material-ui/core/Dialog';
 import DialogActions            from '@material-ui/core/DialogActions';
@@ -8,21 +8,24 @@ import Delete                   from '@material-ui/icons/Delete';
 import { connect }              from 'react-redux';
 import * as inventoryActions    from '../../actions/inventoryActions';
 
-class AlertDialog extends React.Component {
+class AlertDialog extends Component {
   state = {
     open: false,
   };
-  manufacturer=null;
-  make=null;
-  model=null;
-  year=null;
+
+  static defaultProps = {
+    detailsData: {},
+    manufacturer: '',
+    make: '',
+    model: '',
+    year: 0
+  }
 
   handleClickOpen = (data) => {
     this.setState({ open: true });
   };
 
   handleDelete = (id) => {
-    console.log(id)
     this.props.deleteProduct(id)
   };
 

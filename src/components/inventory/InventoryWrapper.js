@@ -4,9 +4,14 @@ import SortableTable 			from '../material/SortableTable';
 import Dialog 					from './Dialog';
 import * as inventoryActions    from '../../actions/inventoryActions';
 
-const EmptyTable = () => <h4>Please enter inventory data</h4>;//
+const EmptyTable = () => <p>Please enter inventory data</p>;
 
 class Inventory extends Component{
+
+  static defaultProps = {
+    fetchProduct: function(){}
+  }
+
 	componentDidMount(){
 		this.props.fetchProduct()
 	}
@@ -14,7 +19,6 @@ class Inventory extends Component{
 	render(){
 		const { inventory } = this.props;
 		let content = null;
- console.log('inventory: => ', inventory)
 
 		content = inventory.length === 0 ? <EmptyTable /> : <SortableTable inventory={inventory} />;
 

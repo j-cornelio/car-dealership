@@ -1,4 +1,4 @@
-import React                    from 'react';
+import React, { Component }     from 'react';
 import Button                   from '@material-ui/core/Button';
 import Dialog                   from '@material-ui/core/Dialog';
 import DialogActions            from '@material-ui/core/DialogActions';
@@ -6,20 +6,19 @@ import DialogContent            from '@material-ui/core/DialogContent';
 import DialogTitle              from '@material-ui/core/DialogTitle';
 import { connect }              from 'react-redux';
 import * as inventoryActions    from '../../actions/inventoryActions';
-// import PropTypes          from 'prop-types';
 
-class DetailsDialog extends React.Component {
-  static defaultProps = {
-    detailsData: {}
-  } 
-
+class DetailsDialog extends Component {
   state = {
     open: false,
   };
-  manufacturer=null;
-  make=null;
-  model=null;
-  year=null;
+
+  static defaultProps = {
+    detailsData: {},
+    manufacturer: '',
+    make: '',
+    model: '',
+    year: 0
+  }
 
   handleClickOpen = (data) => {
     this.setState({ open: true });
@@ -35,13 +34,12 @@ class DetailsDialog extends React.Component {
   };
 
   componentWillReceiveProps(nextProps){
-    console.log('nextProps: ', nextProps);
     this.setState(() => ({open: nextProps.detailsOpen}))
   }
 
   render() {
     let { detailsData } = this.props;
-    detailsData = detailsData || {};
+    let { manufacturer, make, model, year } = detailsData;
 
     return (
       <span>        
@@ -53,11 +51,11 @@ class DetailsDialog extends React.Component {
         >
           <DialogTitle id="alert-dialog-title">Car Details</DialogTitle>
 
-          <DialogContent>
-            <p>{detailsData.manufacturer}</p>
-            <p>{detailsData.make}</p>
-            <p>{detailsData.model}</p>
-            <p>{detailsData.year}</p>
+          <DialogContent className="details-dialog">
+            <p>{manufacturer}</p>
+            <p>{make}</p>
+            <p>{model}</p>
+            <p>{year}</p>
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">

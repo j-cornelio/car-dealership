@@ -7,13 +7,6 @@ import DialogActions                from '@material-ui/core/DialogActions';
 import DialogContent                from '@material-ui/core/DialogContent';
 import DialogTitle                  from '@material-ui/core/DialogTitle';
 
-// const styles = theme => ({
-//   container: {
-//     display: 'flex',
-//     flexWrap: 'wrap',
-//   },
-// });
-
 class AlertDialog extends Component {
   static defaultProps = {
     saveProduct: function(){},
@@ -22,10 +15,13 @@ class AlertDialog extends Component {
   state = {
     open: false,
   };
-  manufacturer=null;
-  make=null;
-  model=null;
-  year=null;
+
+  static defaultProps = {
+    manufacturer: '',
+    make: '',
+    model: '',
+    year: 0
+  }
 
   handleClickOpen = () => {
     this.setState( (prevState) => ({ open: true }) );
@@ -42,7 +38,7 @@ class AlertDialog extends Component {
 
   render() {
     return (
-      <div>
+      <div className="add-new">
         <Button variant="contained" color="primary" onClick={this.handleClickOpen}>Add New</Button>
         
         <Dialog
@@ -51,9 +47,9 @@ class AlertDialog extends Component {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
+          <DialogTitle id="alert-dialog-title">Add New Car</DialogTitle>
           <DialogContent>
-              <form>
+              <form className="add-new-form">
                 <label htmlFor="manufacturer">Manufacture</label>
                 <input ref={node => this.manufacturer = node} type="text" name="manufacturer" />
                 <br />

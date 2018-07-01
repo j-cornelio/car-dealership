@@ -1,3 +1,20 @@
 .edit-icon:hover, .delete-icon:hover {
   cursor: pointer
 }
+
+.add-new {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+form.add-new-form, 
+form.edit-form,
+div.details-dialog {
+  width: 340px;
+}
+
+form.add-new-form input, 
+form.edit-form input {
+  float: right;
+}
+

@@ -12,10 +12,13 @@ class EditDialog extends Component {
   state = {
     open: false,
   };
-  manufacturer=null;
-  make=null;
-  model=null;
-  year=null;
+
+  static defaultProps = {
+    manufacturer: '',
+    make: '',
+    model: '',
+    year: 0
+  }
 
   handleClickOpen = (data) => {
     this.setState({ open: true });
@@ -47,7 +50,7 @@ class EditDialog extends Component {
           <DialogTitle id="alert-dialog-title">Edit Car</DialogTitle>
 
           <DialogContent>
-              <form>
+              <form className="edit-form">
                 <label htmlFor="manufacturer">Manufacture</label>
                 <input ref={node => this.manufacturer = node} type="text" name="manufacturer" placeholder={manufacturer} />
                 <br />

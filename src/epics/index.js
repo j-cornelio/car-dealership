@@ -1,7 +1,6 @@
 import { Observable } 			         from 'rxjs';
 import { combineEpics } 			       from 'redux-observable';
 import * as TYPES from '../actions/TYPES';
-import { FETCH_INVENTORY_FULFILLED } from '../actions/TYPES';
 //import { ajax }                      from 'rxjs/observable/dom/ajax'
 import {
   fetchInventoryFulfilled,
@@ -77,4 +76,4 @@ const deleteInventoryEpic = action$ =>
 //     })
 // )
 
-export const rootEpic = combineEpics( fetchInventoryEpic, postInventoryEpic, putInventoryEpic );
+export const rootEpic = combineEpics( fetchInventoryEpic, postInventoryEpic, putInventoryEpic, deleteInventoryEpic );

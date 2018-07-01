@@ -1,19 +1,21 @@
-import React            from 'react';
-import PropTypes        from 'prop-types';
-import { withStyles }   from '@material-ui/core/styles';
-import Table            from '@material-ui/core/Table';
-import TableBody        from '@material-ui/core/TableBody';
-import TableCell        from '@material-ui/core/TableCell';
-import TableHead        from '@material-ui/core/TableHead';
-import TablePagination  from '@material-ui/core/TablePagination';
-import TableRow         from '@material-ui/core/TableRow';
-import TableSortLabel   from '@material-ui/core/TableSortLabel';
-import Paper            from '@material-ui/core/Paper';
-import Tooltip          from '@material-ui/core/Tooltip';
-import EditDialog       from './EditDialog';
-import DeleteDialog     from './DeleteDialog';
-import DetailsDialog     from './DetailsDialog';
-import Button                   from '@material-ui/core/Button';
+import React, { Component }   from 'react';
+import PropTypes              from 'prop-types';
+import { withStyles }         from '@material-ui/core/styles';
+import Table                  from '@material-ui/core/Table';
+import TableBody              from '@material-ui/core/TableBody';
+import TableCell              from '@material-ui/core/TableCell';
+import TableHead              from '@material-ui/core/TableHead';
+import TablePagination        from '@material-ui/core/TablePagination';
+import TableRow               from '@material-ui/core/TableRow';
+import TableSortLabel         from '@material-ui/core/TableSortLabel';
+import Paper                  from '@material-ui/core/Paper';
+import Tooltip                from '@material-ui/core/Tooltip';
+
+import EditDialog             from './EditDialog';
+import DeleteDialog           from './DeleteDialog';
+import DetailsDialog          from './DetailsDialog';
+import Button                 from '@material-ui/core/Button';
+import { object }               from 'prop-types'
 
 function getSorting(order, orderBy) {
   return order === 'desc'
@@ -29,6 +31,11 @@ const columnData = [
 ];
 
 class EnhancedTableHead extends React.Component {
+
+  static propTypes = {
+    inventory: object.isRequired
+  }
+
   createSortHandler = property => event => {
     this.props.onRequestSort(event, property);
   };
@@ -71,7 +78,6 @@ class EnhancedTableHead extends React.Component {
 EnhancedTableHead.propTypes = {
   onRequestSort: PropTypes.func.isRequired,
   order: PropTypes.string.isRequired,
-  orderBy: PropTypes.string.isRequired,
 };
 
 const styles = theme => ({
@@ -87,17 +93,16 @@ const styles = theme => ({
   },
 });
 
-class EnhancedTable extends React.Component {
+class EnhancedTable extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       order: 'asc',
-      orderBy: 'calories',
       selected: [],
       data: [],
       page: 0,
-      detailsData: null,
+      detailsData: {},
       rowsPerPage: 5,
       detailsOpen: false,
     };
@@ -174,7 +179,6 @@ class EnhancedTable extends React.Component {
                 .sort(getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map( n => {
-                  const isSelected = this.isSelected(n.id);
                   return (
                     <TableRow
                       tabIndex={-1}
