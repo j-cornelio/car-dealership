@@ -13,6 +13,7 @@ import Tooltip          from '@material-ui/core/Tooltip';
 import EditDialog       from './EditDialog';
 import DeleteDialog     from './DeleteDialog';
 import DetailsDialog     from './DetailsDialog';
+import Button                   from '@material-ui/core/Button';
 
 function getSorting(order, orderBy) {
   return order === 'desc'
@@ -132,7 +133,6 @@ class EnhancedTable extends React.Component {
   };
 
   showDetails = (data) => {
-    console.log('showDetails: ', data)
     this.setState((prevState) => (
       {
         detailsOpen: !prevState.detailsOpen,
@@ -179,11 +179,8 @@ class EnhancedTable extends React.Component {
                   const isSelected = this.isSelected(n.id);
                   return (
                     <TableRow
-                      //onClick={this.showDetails.bind(this, n)}
-                      aria-checked={isSelected}
                       tabIndex={-1}
                       key={n.id}
-                      selected={isSelected}
                     >
                       <TableCell component="th" scope="row" padding="none">
                         {n.manufacturer}
@@ -191,6 +188,11 @@ class EnhancedTable extends React.Component {
                       <TableCell numeric>{n.make}</TableCell>
                       <TableCell numeric>{n.model}</TableCell>
                       <TableCell numeric>{n.year}</TableCell>
+                      <TableCell numeric>
+                        <Button onClick={this.showDetails.bind(this, n)} color="primary">
+                        Details
+                      </Button>
+                      </TableCell>
                       <TableCell numeric>
                         <EditDialog  {...n} /> 
                         <DeleteDialog {...n} />

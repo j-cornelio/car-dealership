@@ -1,11 +1,11 @@
 import * as TYPES from '../actions/TYPES';
 
 const initalState = {
-	inventory: [],
-	// inventory: [
-	// 	{ id: 0, manufacturer: 'Ford', make: 'Mustang', model: 'GT', year: 2017 },
-	// 	{ id: 1, manufacturer: 'Toyota', make: 'Rav4', model: 'EX', year: 2018 }
-	// ],
+	// inventory: [],
+	inventory: [
+		{ id: 0, manufacturer: 'Ford', make: 'Mustang', model: 'GT', year: 2017 },
+		{ id: 1, manufacturer: 'Toyota', make: 'Rav4', model: 'EX', year: 2018 }
+	],
 	loading: false,
 	error: false,
 };
