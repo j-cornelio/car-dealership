@@ -8,7 +8,7 @@ import Delete                   from '@material-ui/icons/Delete';
 import { connect }              from 'react-redux';
 import * as inventoryActions    from '../../actions/inventoryActions';
 
-class AlertDialog extends Component {
+class DeleteDialog extends Component {
   state = {
     open: false,
   };
@@ -47,7 +47,9 @@ class AlertDialog extends Component {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
+
           <DialogTitle id="alert-dialog-title">Delete Car</DialogTitle>
+        
           <DialogContent>
             <h5>Are you sure you want to delete:</h5>
             <p>{manufacturer}</p>
@@ -55,6 +57,7 @@ class AlertDialog extends Component {
             <p>{model}</p>
             <p>{year}</p>
           </DialogContent>
+        
           <DialogActions>
             <Button onClick={() => {
               this.handleDelete(id)
@@ -62,18 +65,17 @@ class AlertDialog extends Component {
               Delete
             </Button>
             <Button onClick={this.handleClose} color="primary" autoFocus>
-              Agree
+              Cancel
             </Button>
           </DialogActions>
+        
         </Dialog>
       </span>
     );
   }
 }
 
-const mapStateToProps = (state) => {  
-  return {}
-};
+const mapStateToProps = (state) => ({});
 
 const mapDispatchProps = (dispatch) => {
   return {
@@ -81,4 +83,4 @@ const mapDispatchProps = (dispatch) => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchProps)(AlertDialog);
+export default connect(mapStateToProps, mapDispatchProps)(DeleteDialog);

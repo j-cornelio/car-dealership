@@ -57,6 +57,7 @@ class DetailsDialog extends Component {
             <p>{model}</p>
             <p>{year}</p>
           </DialogContent>
+
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
               Save
@@ -65,15 +66,14 @@ class DetailsDialog extends Component {
               Cancel
             </Button>
           </DialogActions>
+
         </Dialog>
       </span>
     );
   }
 }
 
-const mapStateToProps = (state) => {  
-  return {}
-};
+const mapStateToProps = (state) => ({});
 
 const mapDispatchProps = (dispatch) => {
   return {

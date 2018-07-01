@@ -154,7 +154,6 @@ class EnhancedTable extends Component {
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
   render() {
-    //console.log('TABLE ', this.props)
     const { classes } = this.props;
     const { data, order, orderBy, rowsPerPage, page, detailsOpen, detailsData } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);

@@ -1,6 +1,6 @@
 import { Observable } 			         from 'rxjs';
 import { combineEpics } 			       from 'redux-observable';
-import * as TYPES from '../actions/TYPES';
+import * as TYPES                    from '../actions/TYPES';
 //import { ajax }                      from 'rxjs/observable/dom/ajax'
 import {
   fetchInventoryFulfilled,
@@ -8,7 +8,7 @@ import {
   postProductRejected,
   putProductFulfilled,
   deleteProductFulfilled
-}                                     from '../actions/inventoryActions';
+}                                    from '../actions/inventoryActions';
 
 const URL = 'http://rest.learncode.academy/api/dealership/inventory';
 

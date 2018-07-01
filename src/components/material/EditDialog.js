@@ -37,7 +37,6 @@ class EditDialog extends Component {
 
     return (
       <span>
-        
         <Edit onClick={this.handleClickOpen} className={'edit-icon'} />
 
         <Dialog
@@ -80,7 +79,7 @@ class EditDialog extends Component {
             </Button>
             
             <Button onClick={this.handleClose} color="primary" autoFocus>
-              Agree
+              Cancel
             </Button>
           </DialogActions>
         </Dialog>

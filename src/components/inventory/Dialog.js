@@ -7,16 +7,13 @@ import DialogActions                from '@material-ui/core/DialogActions';
 import DialogContent                from '@material-ui/core/DialogContent';
 import DialogTitle                  from '@material-ui/core/DialogTitle';
 
-class AlertDialog extends Component {
-  static defaultProps = {
-    saveProduct: function(){},
-  }
-
+class AddDialog extends Component {
   state = {
     open: false,
   };
 
   static defaultProps = {
+    saveProduct: function(){},
     manufacturer: '',
     make: '',
     model: '',
@@ -28,7 +25,6 @@ class AlertDialog extends Component {
   };
 
   handlePost = (data) => {
-    //console.log(data);
     this.props.saveProduct(data)
   };
 
@@ -48,6 +44,7 @@ class AlertDialog extends Component {
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle id="alert-dialog-title">Add New Car</DialogTitle>
+          
           <DialogContent>
               <form className="add-new-form">
                 <label htmlFor="manufacturer">Manufacture</label>
@@ -64,6 +61,7 @@ class AlertDialog extends Component {
                 <br />
               </form>
           </DialogContent>
+
           <DialogActions>
             <Button onClick={() => {
               this.handlePost({
@@ -79,15 +77,14 @@ class AlertDialog extends Component {
               Agree
             </Button>
           </DialogActions>
+
         </Dialog>
       </div>
     );
   }
 }//
 
-const mapStateToProps = (state) => {  
-  return {  }
-};
+const mapStateToProps = (state) => ({});
 
 const mapDispatchProps = (dispatch) => {
   return {
@@ -95,4 +92,4 @@ const mapDispatchProps = (dispatch) => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchProps)(AlertDialog);
+export default connect(mapStateToProps, mapDispatchProps)(AddDialog);
