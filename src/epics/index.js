@@ -4,7 +4,7 @@ import * as TYPES from '../actions/TYPES';
 import { FETCH_INVENTORY_FULFILLED } from '../actions/TYPES';
 //import { ajax }                      from 'rxjs/observable/dom/ajax'
 import {
-  //fetchInventoryFulfilled,
+  fetchInventoryFulfilled,
   postProductFulfilled,
   postProductRejected,
   putProductFulfilled
@@ -31,7 +31,7 @@ const fetchInventoryEpic = (action$) =>
   action$.ofType( TYPES.FETCH_INVENTORY )
   .mergeMap(action =>
       api.fetchUser(action.payload) // This returns our Observable wrapping the Promise
-        .map( payload => ({ type: FETCH_INVENTORY_FULFILLED, payload }) )
+        .map( payload => fetchInventoryFulfilled(payload) )
     );
 
 const postInventoryEpic = action$ =>
@@ -45,10 +45,10 @@ const postInventoryEpic = action$ =>
     );
 
 const putInventoryEpic = action$ =>
-  action$.ofType( TYPES.PUT_INVENTORY )
+  action$.ofType( TYPES.EDIT_INVENTORY )
     .mergeMap(action => 
       Observable.ajax.put( `${URL}/${action.payload.id}`)
-        .map(response => putProductFulfilled(response))
+        .map(response => putProductFulfilled())
         .catch(error => Observable.of(
           postProductRejected(error)
         ))

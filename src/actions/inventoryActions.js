@@ -16,7 +16,7 @@ export const postProductFulfilled = (payload) => {
 
 export const editInventory = (payload) => { 
   return {
-    type: TYPES.PUT_INVENTORY,
+    type: TYPES.EDIT_INVENTORY,
     payload,
   }
 };

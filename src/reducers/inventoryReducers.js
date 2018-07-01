@@ -32,11 +32,7 @@ export const inventoryReducer = (state=initalState, action={}) => {
 	    case TYPES.PUT_FULFILLED:
 	      return {
 	        ...state,
-	        inventory: [
-	        	...state.inventory,
-	        	action.payload
-	        ],
-	        uploading: false,
+	        edit: 'success'
 	      }
 
 	    case TYPES.FETCH_INVENTORY:

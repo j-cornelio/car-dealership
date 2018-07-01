@@ -179,6 +179,7 @@ class EnhancedTable extends React.Component {
                   const isSelected = this.isSelected(n.id);
                   return (
                     <TableRow
+                      //onClick={this.showDetails.bind(this, n)}
                       aria-checked={isSelected}
                       tabIndex={-1}
                       key={n.id}

@@ -80,13 +80,11 @@ class EditDialog extends Component {
   }
 }
 
-const mapStateToProps = (state) => {  
-  return {}
-};
+const mapStateToProps = (state) => ({});
 
 const mapDispatchProps = (dispatch) => {
   return {
-    editProduct: (payload) => dispatch(inventoryActions.editInventory(payload)),
+    editProduct: (payload) => dispatch(inventoryActions.editInventory(payload))
   }
 };
 
