@@ -3,10 +3,11 @@ import { combineEpics } 			       from 'redux-observable';
 import * as TYPES from '../actions/TYPES';
 import { FETCH_INVENTORY_FULFILLED } from '../actions/TYPES';
 //import { ajax }                      from 'rxjs/observable/dom/ajax'
-import { 
-  fetchInventoryFulfilled, 
+import {
+  //fetchInventoryFulfilled,
   postProductFulfilled,
-  postProductRejected 
+  postProductRejected,
+  putProductFulfilled
 }                                     from '../actions/inventoryActions';
 
 const URL = 'http://rest.learncode.academy/api/dealership/inventory';
@@ -21,12 +22,12 @@ const URL = 'http://rest.learncode.academy/api/dealership/inventory';
 const api = {
   fetchUser: id => {
     const request = fetch(URL)
-      .then(response => response.json());
+      .then( response => response.json() );
     return Observable.from(request);
   }
 };
 
-const fetchInventoryEpic = (action$) => 
+const fetchInventoryEpic = (action$) =>
   action$.ofType( TYPES.FETCH_INVENTORY )
   .mergeMap(action =>
       api.fetchUser(action.payload) // This returns our Observable wrapping the Promise
@@ -38,6 +39,16 @@ const postInventoryEpic = action$ =>
     .mergeMap(action =>
       Observable.ajax.post(URL, action.payload)
         .map(response => postProductFulfilled(response))
+        .catch(error => Observable.of(
+          postProductRejected(error)
+        ))
+    );
+
+const putInventoryEpic = action$ =>
+  action$.ofType( TYPES.PUT_INVENTORY )
+    .mergeMap(action =>
+      Observable.ajax.put( `${URL} / ${action.payload}`)
+        .map(payload => putProductFulfilled(payload))
         .catch(error => Observable.of(
           postProductRejected(error)
         ))
@@ -55,4 +66,4 @@ const postInventoryEpic = action$ =>
 //     })
 // )
 
-export const rootEpic = combineEpics( fetchInventoryEpic, postInventoryEpic );
+export const rootEpic = combineEpics( fetchInventoryEpic, postInventoryEpic, putInventoryEpic );

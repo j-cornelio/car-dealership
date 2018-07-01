@@ -10,8 +10,6 @@ import TableRow         from '@material-ui/core/TableRow';
 import TableSortLabel   from '@material-ui/core/TableSortLabel';
 import Paper            from '@material-ui/core/Paper';
 import Tooltip          from '@material-ui/core/Tooltip';
-import DeleteIcon       from '@material-ui/icons/Delete';
-import Edit             from '@material-ui/icons/Edit';
 import EditDialog       from './EditDialog';
 import DeleteDialog     from './DeleteDialog';
 import DetailsDialog     from './DetailsDialog';

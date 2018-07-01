@@ -14,6 +14,20 @@ export const postProductFulfilled = (payload) => {
   }
 };
 
+export const putInventory = (id) => { 
+  return {
+    type: TYPES.PUT_INVENTORY,
+    id
+  }
+};
+
+export const putProductFulfilled = (payload) => { 
+  return {
+    type: TYPES.PUT_INVENTORY_FULFILLED,
+    payload: payload.response
+  }
+};
+
 export const postProductRejected = () => { 
   return {
     type: TYPES.POST_PROD_ERROR

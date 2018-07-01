@@ -3,7 +3,6 @@ import Button                   from '@material-ui/core/Button';
 import Dialog                   from '@material-ui/core/Dialog';
 import DialogActions            from '@material-ui/core/DialogActions';
 import DialogContent            from '@material-ui/core/DialogContent';
-import DialogContentText        from '@material-ui/core/DialogContentText';
 import DialogTitle              from '@material-ui/core/DialogTitle';
 import Delete                   from '@material-ui/icons/Delete';
 import { connect }              from 'react-redux';
@@ -31,7 +30,7 @@ class AlertDialog extends React.Component {
   };
 
   render() {
-    const { id, manufacturer, make, model, year, deleteProduct } = this.props;
+    const { id, manufacturer, make, model, year } = this.props;
 
     return (
       <span>

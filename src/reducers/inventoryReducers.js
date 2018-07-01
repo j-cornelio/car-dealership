@@ -1,18 +1,18 @@
 import * as TYPES from '../actions/TYPES';
 
 const initalState = {
-//	inventory: [],
-	inventory: [
-		{ id: 0, manufacturer: 'Ford', make: 'Mustang', model: 'GT', year: 2017 },
-		{ id: 1, manufacturer: 'Toyota', make: 'Rav4', model: 'EX', year: 2018 }
-	],
+	inventory: [],
+	// inventory: [
+	// 	{ id: 0, manufacturer: 'Ford', make: 'Mustang', model: 'GT', year: 2017 },
+	// 	{ id: 1, manufacturer: 'Toyota', make: 'Rav4', model: 'EX', year: 2018 }
+	// ],
 	loading: false,
 	error: false,
 };
 
 export const inventoryReducer = (state=initalState, action={}) => {
+	
 	switch(action.type){
-
 	    case TYPES.POST_INVENTORY:
 	      return {
 	        ...state,
@@ -20,6 +20,16 @@ export const inventoryReducer = (state=initalState, action={}) => {
 	      }
 
 	    case TYPES.POST_PROD_FULFILLED:
+	      return {
+	        ...state,
+	        inventory: [
+	        	...state.inventory,
+	        	action.payload
+	        ],
+	        uploading: false,
+	      }
+
+	    case TYPES.PUT_PROD_FULFILLED:
 	      return {
 	        ...state,
 	        inventory: [
@@ -44,7 +54,6 @@ export const inventoryReducer = (state=initalState, action={}) => {
 	        	}
 	        	return elem;
 	        })
-
 	      }
 
 	    case TYPES.FETCH_INVENTORY_FULFILLED:
