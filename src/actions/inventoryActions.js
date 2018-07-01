@@ -14,17 +14,16 @@ export const postProductFulfilled = (payload) => {
   }
 };
 
-export const putInventory = (id) => { 
+export const editInventory = (payload) => { 
   return {
     type: TYPES.PUT_INVENTORY,
-    id
+    payload,
   }
 };
 
 export const putProductFulfilled = (payload) => { 
   return {
-    type: TYPES.PUT_INVENTORY_FULFILLED,
-    payload: payload.response
+    type: TYPES.PUT_FULFILLED
   }
 };
 
@@ -37,13 +36,6 @@ export const postProductRejected = () => {
 export const fetchInventory = (payload) => { 
   return {
     type: TYPES.FETCH_INVENTORY,
-    payload,
-  }
-};
-
-export const editInventory = (payload) => { 
-  return {
-    type: TYPES.EDIT_INVENTORY,
     payload,
   }
 };

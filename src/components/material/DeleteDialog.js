@@ -66,7 +66,7 @@ class AlertDialog extends React.Component {
 }
 
 const mapStateToProps = (state) => {  
-  return null
+  return {}
 };
 
 const mapDispatchProps = (dispatch) => {

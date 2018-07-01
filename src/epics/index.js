@@ -31,7 +31,7 @@ const fetchInventoryEpic = (action$) =>
   action$.ofType( TYPES.FETCH_INVENTORY )
   .mergeMap(action =>
       api.fetchUser(action.payload) // This returns our Observable wrapping the Promise
-        .map(payload => ({ type: FETCH_INVENTORY_FULFILLED, payload }))
+        .map( payload => ({ type: FETCH_INVENTORY_FULFILLED, payload }) )
     );
 
 const postInventoryEpic = action$ =>
@@ -46,9 +46,9 @@ const postInventoryEpic = action$ =>
 
 const putInventoryEpic = action$ =>
   action$.ofType( TYPES.PUT_INVENTORY )
-    .mergeMap(action =>
-      Observable.ajax.put( `${URL} / ${action.payload}`)
-        .map(payload => putProductFulfilled(payload))
+    .mergeMap(action => 
+      Observable.ajax.put( `${URL}/${action.payload.id}`)
+        .map(response => putProductFulfilled(response))
         .catch(error => Observable.of(
           postProductRejected(error)
         ))
