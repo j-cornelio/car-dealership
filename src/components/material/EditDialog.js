@@ -34,14 +34,18 @@ class EditDialog extends Component {
 
     return (
       <span>
-        <Edit onClick={this.handleClickOpen} />
+        
+        <Edit onClick={this.handleClickOpen} className={'edit-icon'} />
+
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
+          
           <DialogTitle id="alert-dialog-title">Edit Car</DialogTitle>
+
           <DialogContent>
               <form>
                 <label htmlFor="manufacturer">Manufacture</label>
@@ -58,6 +62,7 @@ class EditDialog extends Component {
                 <br />
               </form>
           </DialogContent>
+
           <DialogActions>
             <Button onClick={() => {
               this.handleEdit({
@@ -70,6 +75,7 @@ class EditDialog extends Component {
             }} color="primary">
               Save
             </Button>
+            
             <Button onClick={this.handleClose} color="primary" autoFocus>
               Agree
             </Button>

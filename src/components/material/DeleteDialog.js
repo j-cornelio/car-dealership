@@ -35,7 +35,9 @@ class AlertDialog extends React.Component {
 
     return (
       <span>
-        <Delete onClick={this.handleClickOpen} />
+
+        <Delete onClick={this.handleClickOpen} className="delete-icon" />
+
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}

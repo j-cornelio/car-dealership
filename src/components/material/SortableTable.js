@@ -26,7 +26,6 @@ const columnData = [
   { id: 'calories', numeric: true, disablePadding: false, label: 'Make' },
   { id: 'fat', numeric: true, disablePadding: false, label: 'Model' },
   { id: 'carbs', numeric: true, disablePadding: false, label: 'Year' },
-  { id: 'protein', numeric: true, disablePadding: false, label: 'xxx' },
 ];
 
 class EnhancedTableHead extends React.Component {
@@ -44,7 +43,6 @@ class EnhancedTableHead extends React.Component {
             return (
               <TableCell
                 key={column.id}
-                numeric={column.numeric}
                 padding={column.disablePadding ? 'none' : 'default'}
                 sortDirection={orderBy === column.id ? order : false}
               >
@@ -182,17 +180,18 @@ class EnhancedTable extends React.Component {
                       tabIndex={-1}
                       key={n.id}
                     >
-                      <TableCell component="th" scope="row" padding="none">
-                        {n.manufacturer}
-                      </TableCell>
-                      <TableCell numeric>{n.make}</TableCell>
-                      <TableCell numeric>{n.model}</TableCell>
-                      <TableCell numeric>{n.year}</TableCell>
-                      <TableCell numeric>
+                      
+                      <TableCell>{n.manufacturer}</TableCell>
+                      <TableCell >{n.make}</TableCell>
+                      <TableCell >{n.model}</TableCell>
+                      <TableCell >{n.year}</TableCell>
+                      
+                      <TableCell >
                         <Button onClick={this.showDetails.bind(this, n)} color="primary">
-                        Details
+                          Details
                       </Button>
                       </TableCell>
+
                       <TableCell numeric>
                         <EditDialog  {...n} /> 
                         <DeleteDialog {...n} />
