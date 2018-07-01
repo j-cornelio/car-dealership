@@ -1,18 +1,19 @@
-import React          from 'react';
-import PropTypes      from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Table          from '@material-ui/core/Table';
-import TableBody      from '@material-ui/core/TableBody';
-import TableCell      from '@material-ui/core/TableCell';
-import TableHead      from '@material-ui/core/TableHead';
-import TablePagination from '@material-ui/core/TablePagination';
-import TableRow       from '@material-ui/core/TableRow';
-import TableSortLabel from '@material-ui/core/TableSortLabel';
-import Paper          from '@material-ui/core/Paper';
-import Tooltip        from '@material-ui/core/Tooltip';
-import DeleteIcon     from '@material-ui/icons/Delete';
-import Edit           from '@material-ui/icons/Edit';
-import EditDialog           from './EditDialog';
+import React            from 'react';
+import PropTypes        from 'prop-types';
+import { withStyles }   from '@material-ui/core/styles';
+import Table            from '@material-ui/core/Table';
+import TableBody        from '@material-ui/core/TableBody';
+import TableCell        from '@material-ui/core/TableCell';
+import TableHead        from '@material-ui/core/TableHead';
+import TablePagination  from '@material-ui/core/TablePagination';
+import TableRow         from '@material-ui/core/TableRow';
+import TableSortLabel   from '@material-ui/core/TableSortLabel';
+import Paper            from '@material-ui/core/Paper';
+import Tooltip          from '@material-ui/core/Tooltip';
+import DeleteIcon       from '@material-ui/icons/Delete';
+import Edit             from '@material-ui/icons/Edit';
+import EditDialog       from './EditDialog';
+import DeleteDialog     from './DeleteDialog';
 
 function getSorting(order, orderBy) {
   return order === 'desc'
@@ -159,10 +160,6 @@ class EnhancedTable extends React.Component {
 
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
-  _edit = () => console.log('edit!')
-
-  _delete = () => console.log('delete!')
-
   render() {
     //console.log('TABLE ', this.props)
     const { classes } = this.props;
@@ -199,7 +196,10 @@ class EnhancedTable extends React.Component {
                       <TableCell numeric>{n.make}</TableCell>
                       <TableCell numeric>{n.model}</TableCell>
                       <TableCell numeric>{n.year}</TableCell>
-                      <TableCell numeric><EditDialog  {...n} /> <span onClick={this._delete}><DeleteIcon /></span></TableCell>
+                      <TableCell numeric>
+                        <EditDialog  {...n} /> 
+                        <DeleteDialog {...n} />
+                      </TableCell>
                     </TableRow>
                   );
                 })}

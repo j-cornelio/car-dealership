@@ -41,7 +41,7 @@ export const fetchInventoryFulfilled = (payload) => {
   }
 };
 
-export const deleteInventory = (payload) => { 
+export const deleteProduct = (payload) => { 
   return {
     type: TYPES.DELETE_INVENTORY,
     payload,
