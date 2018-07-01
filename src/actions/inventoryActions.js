@@ -53,3 +53,9 @@ export const deleteProduct = (payload) => {
     payload,
   }
 };
+export const deleteProductFulfilled = (payload) => { 
+  return {
+    type: TYPES.DELETE_INVENTORY_FULFILLED
+  }
+};
+

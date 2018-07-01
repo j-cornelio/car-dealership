@@ -7,7 +7,8 @@ import {
   fetchInventoryFulfilled,
   postProductFulfilled,
   postProductRejected,
-  putProductFulfilled
+  putProductFulfilled,
+  deleteProductFulfilled
 }                                     from '../actions/inventoryActions';
 
 const URL = 'http://rest.learncode.academy/api/dealership/inventory';
@@ -49,6 +50,16 @@ const putInventoryEpic = action$ =>
     .mergeMap(action => 
       Observable.ajax.put( `${URL}/${action.payload.id}`)
         .map(response => putProductFulfilled())
+        .catch(error => Observable.of(
+          postProductRejected(error)
+        ))
+    );
+
+const deleteInventoryEpic = action$ =>
+  action$.ofType( TYPES.DELETE_INVENTORY )
+    .mergeMap(action => 
+      Observable.ajax.put( `${URL}/${action.payload.id}`)
+        .map(response => deleteProductFulfilled())
         .catch(error => Observable.of(
           postProductRejected(error)
         ))

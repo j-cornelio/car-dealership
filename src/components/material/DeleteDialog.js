@@ -21,8 +21,9 @@ class AlertDialog extends React.Component {
     this.setState({ open: true });
   };
 
-  handleDelete = (data) => {
-    this.props.deleteProduct(data)
+  handleDelete = (id) => {
+    console.log(id)
+    this.props.deleteProduct(id)
   };
 
   handleClose = () => {
@@ -71,7 +72,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchProps = (dispatch) => {
   return {
-    deleteProduct: (payload) => dispatch(inventoryActions.deleteProduct(payload)),
+    deleteProduct: (id) => dispatch(inventoryActions.deleteProduct(id)),
   }
 };
 
