@@ -14,6 +14,7 @@ import DeleteIcon       from '@material-ui/icons/Delete';
 import Edit             from '@material-ui/icons/Edit';
 import EditDialog       from './EditDialog';
 import DeleteDialog     from './DeleteDialog';
+import DetailsDialog     from './DetailsDialog';
 
 function getSorting(order, orderBy) {
   return order === 'desc'
@@ -99,13 +100,16 @@ class EnhancedTable extends React.Component {
       selected: [],
       data: [],
       page: 0,
+      detailsData: null,
       rowsPerPage: 5,
+      detailsOpen: false,
     };
   }
 
   componentDidMount(){
     this.setState( (prevState) => ({data : this.props.inventory}) )  
   }
+
   componentWillReceiveProps(nextProps){    
     this.setState( () => ({data: nextProps.inventory}) )
   }
@@ -129,25 +133,13 @@ class EnhancedTable extends React.Component {
     this.setState({ selected: [] });
   };
 
-  handleClick = (event, id) => {
-    const { selected } = this.state;
-    const selectedIndex = selected.indexOf(id);
-    let newSelected = [];
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      );
-    }
-
-    this.setState({ selected: newSelected });
+  showDetails = (data) => {
+    console.log(data)
+    this.setState((prevState) => (
+      {
+        detailsOpen: !prevState.detailsOpen,
+        detailsData: data
+      } ))
   };
 
   handleChangePage = (event, page) => {
@@ -163,11 +155,16 @@ class EnhancedTable extends React.Component {
   render() {
     //console.log('TABLE ', this.props)
     const { classes } = this.props;
-    const { data, order, orderBy, rowsPerPage, page } = this.state;
+    const { data, order, orderBy, rowsPerPage, page, detailsOpen, detailsData } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
       <Paper className={classes.root}>
+        <DetailsDialog 
+          detailsData={detailsData}
+          detailsOpen={detailsOpen} 
+          showDetails={this.showDetails}  
+        />
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             <EnhancedTableHead
@@ -184,7 +181,7 @@ class EnhancedTable extends React.Component {
                   const isSelected = this.isSelected(n.id);
                   return (
                     <TableRow
-                      hover
+                      onClick={this.showDetails.bind(this, n)}
                       aria-checked={isSelected}
                       tabIndex={-1}
                       key={n.id}
