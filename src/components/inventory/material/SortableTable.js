@@ -24,7 +24,7 @@ function getSorting(order, orderBy) {
 }
 
 const columnData = [
-  { id: 'name', numeric: false, disablePadding: false, label: 'Manufactorer' },
+  { id: 'name', numeric: false, disablePadding: false, label: 'Manufacturer' },
   { id: 'calories', numeric: true, disablePadding: false, label: 'Make' },
   { id: 'fat', numeric: true, disablePadding: false, label: 'Model' },
   { id: 'carbs', numeric: true, disablePadding: false, label: 'Year' },
