@@ -28,6 +28,8 @@ const columnData = [
   { id: 'calories', numeric: true, disablePadding: false, label: 'Make' },
   { id: 'fat', numeric: true, disablePadding: false, label: 'Model' },
   { id: 'carbs', numeric: true, disablePadding: false, label: 'Year' },
+  { id: 'a', numeric: true, disablePadding: false, label: '' },
+  { id: 'b', numeric: true, disablePadding: false, label: '' },
 ];
 
 class EnhancedTableHead extends React.Component {
