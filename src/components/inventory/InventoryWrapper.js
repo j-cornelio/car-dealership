@@ -24,7 +24,7 @@ class Inventory extends Component{
 
 		return (
 		   <div>
-		   		<h4>Inventory</h4>
+		   		<h4>Vehicle Inventory</h4>
 		   		<AddDialog />
 			    {content}
 		   </div>
