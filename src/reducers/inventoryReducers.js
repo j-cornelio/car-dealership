@@ -1,11 +1,7 @@
 import * as TYPES from '../actions/TYPES';
 
 const initialState = {
-	// inventory: [],
-	inventory: [
-		{ id: 0, manufacturer: 'Ford', make: 'Mustang', model: 'GT', year: 2017 },
-		{ id: 1, manufacturer: 'Toyota', make: 'Rav4', model: 'EX', year: 2018 }
-	],
+	inventory: [],
 	loading: false,
 	error: false,
 };
@@ -39,6 +35,7 @@ const fetchInventory = (state, action) => {
 	    loading: true,
     }
 } 
+
 const fetchFulfilled = (state, action) => {
     return {
         ...state,
@@ -49,12 +46,14 @@ const fetchFulfilled = (state, action) => {
         loading: false,
     }
 } 
+
 const fetchError = (state, action) => {
     return {
         ...state,
         error: true,
     }
 } 
+
 const editInventory = (state, action) => {
     return {
         ...state,
@@ -66,6 +65,7 @@ const editInventory = (state, action) => {
         })
     }
 } 
+
 const deleteInventory = (state, action) => {
     return {
         ...state,

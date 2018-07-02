@@ -6,7 +6,7 @@ import DialogContent            from '@material-ui/core/DialogContent';
 import DialogTitle              from '@material-ui/core/DialogTitle';
 import Delete                   from '@material-ui/icons/Delete';
 import { connect }              from 'react-redux';
-import * as inventoryActions    from '../../actions/inventoryActions';
+import * as inventoryActions    from '../../../actions/inventoryActions';
 
 class DeleteDialog extends Component {
   state = {

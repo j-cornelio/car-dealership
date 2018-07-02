@@ -1,7 +1,7 @@
 import React, { Component } 	from 'react';
 import { connect }              from 'react-redux';
-import SortableTable 			from '../material/SortableTable';
-import Dialog 					from './Dialog';
+import SortableTable 			from './material/SortableTable';
+import AddDialog 					from './material/AddDialog';
 import * as inventoryActions    from '../../actions/inventoryActions';
 
 const EmptyTable = () => <p>Please enter inventory data</p>;
@@ -25,7 +25,7 @@ class Inventory extends Component{
 		return (
 		   <div>
 		   		<h4>Inventory</h4>
-		   		<Dialog />
+		   		<AddDialog />
 			    {content}
 		   </div>
 		)

@@ -5,7 +5,7 @@ import DialogActions            from '@material-ui/core/DialogActions';
 import DialogContent            from '@material-ui/core/DialogContent';
 import DialogTitle              from '@material-ui/core/DialogTitle';
 import { connect }              from 'react-redux';
-import * as inventoryActions    from '../../actions/inventoryActions';
+import * as inventoryActions    from '../../../actions/inventoryActions';
 
 class DetailsDialog extends Component {
   state = {
