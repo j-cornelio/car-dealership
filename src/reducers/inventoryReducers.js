@@ -12,6 +12,7 @@ const inventorySuccess = (state, action) => {
         uploading: true,
     }
 } 
+
 const postProductionFulfilled = (state, action) => {
     return {
         ...state,
@@ -22,6 +23,7 @@ const postProductionFulfilled = (state, action) => {
         uploading: false,
     }
 } 
+
 const putFulfilled = (state, action) => {
     return {
 	    ...state,

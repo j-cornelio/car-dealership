@@ -15,7 +15,7 @@ import EditDialog             from './EditDialog';
 import DeleteDialog           from './DeleteDialog';
 import DetailsDialog          from './DetailsDialog';
 import Button                 from '@material-ui/core/Button';
-import { object }               from 'prop-types'
+import { object }             from 'prop-types'
 
 function getSorting(order, orderBy) {
   return order === 'desc'

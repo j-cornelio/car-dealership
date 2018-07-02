@@ -59,9 +59,6 @@ class DetailsDialog extends Component {
           </DialogContent>
 
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
-              Save
-            </Button>
             <Button onClick={this.handleClose} color="primary" autoFocus>
               Cancel
             </Button>
