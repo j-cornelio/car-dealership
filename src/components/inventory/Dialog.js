@@ -47,7 +47,7 @@ class AddDialog extends Component {
           
           <DialogContent>
               <form className="add-new-form">
-                <label htmlFor="manufacturer">Manufacture</label>
+                <label htmlFor="manufacturer">Manufacturer</label>
                 <input ref={node => this.manufacturer = node} type="text" name="manufacturer" />
                 <br />
                 <label htmlFor="make">Make</label>

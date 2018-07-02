@@ -1,6 +1,6 @@
 import * as TYPES from '../actions/TYPES';
 
-const initalState = {
+const initialState = {
 	// inventory: [],
 	inventory: [
 		{ id: 0, manufacturer: 'Ford', make: 'Mustang', model: 'GT', year: 2017 },
@@ -10,71 +10,82 @@ const initalState = {
 	error: false,
 };
 
-export const inventoryReducer = (state=initalState, action={}) => {
-	
-	switch(action.type){
-	    case TYPES.POST_INVENTORY:
-	      return {
-	        ...state,
-	        uploading: true,
-	      }
+const inventorySuccess = (state, action) => {
+    return {
+        ...state,
+        uploading: true,
+    }
+} 
+const postProductionFulfilled = (state, action) => {
+    return {
+        ...state,
+        inventory: [
+        	...state.inventory,
+        	action.payload
+        ],
+        uploading: false,
+    }
+} 
+const putFulfilled = (state, action) => {
+    return {
+	    ...state,
+	    edit: 'success'
+    }
+} 
 
-	    case TYPES.POST_PROD_FULFILLED:
-	      return {
-	        ...state,
-	        inventory: [
-	        	...state.inventory,
-	        	action.payload
-	        ],
-	        uploading: false,
-	      }
+const fetchInventory = (state, action) => {
+    return {
+	    ...state,
+	    loading: true,
+    }
+} 
+const fetchFulfilled = (state, action) => {
+    return {
+        ...state,
+        inventory: [
+        	...state.inventory,
+        	...action.payload
+        ],
+        loading: false,
+    }
+} 
+const fetchError = (state, action) => {
+    return {
+        ...state,
+        error: true,
+    }
+} 
+const editInventory = (state, action) => {
+    return {
+        ...state,
+        inventory: state.inventory.map( elem => {
+        	if( elem.id === action.payload.id){
+        		return action.payload
+        	}
+        	return elem;
+        })
+    }
+} 
+const deleteInventory = (state, action) => {
+    return {
+        ...state,
+        inventory: state.inventory.filter(item => item.id !== action.payload)
+    }
+} 
 
-	    case TYPES.PUT_FULFILLED:
-	      return {
-	        ...state,
-	        edit: 'success'
-	      }
+export const inventoryReducer = (state = initialState, action) => {
+    const handlers = {
+        [TYPES.POST_INVENTORY]: inventorySuccess,
+        [TYPES.POST_PROD_FULFILLED]: postProductionFulfilled,
+        [TYPES.PUT_FULFILLED]: putFulfilled,
+        [TYPES.FETCH_INVENTORY_FULFILLED]: fetchFulfilled,
+        [TYPES.FETCH_INVENTORY]: fetchInventory,
+        [TYPES.FETCH_ERROR]: fetchError,
+        [TYPES.EDIT_INVENTORY]: editInventory,
+        [TYPES.DELETE_INVENTORY]: deleteInventory
+    }
 
-	    case TYPES.FETCH_INVENTORY:
-	      return {
-	        ...state,
-	        loading: true,
-	      }
-
-	    case TYPES.EDIT_INVENTORY:
-	      return {
-	        ...state,
-	        inventory: state.inventory.map( elem => {
-	        	if( elem.id === action.payload.id){
-	        		return action.payload
-	        	}
-	        	return elem;
-	        })
-	      }
-
-	    case TYPES.FETCH_INVENTORY_FULFILLED:
-	      return {
-	        ...state,
-	        inventory: [
-	        	...state.inventory,
-	        	...action.payload
-	        ],
-	        loading: false,
-	      }
-
-	    case TYPES.FETCH_ERROR:
-	      return {
-	        ...state,
-	        error: true,
-	      }
-
-	    case TYPES.DELETE_INVENTORY:
-	      return {
-	        ...state,
-	        inventory: state.inventory.filter(item => item.id !== action.payload)
-	      }
-
-		default: 
-			return state;
-	}
-};
+    return handlers[action.type]
+        ? handlers[action.type](state, action)
+        : state
+}
