@@ -1,4 +1,4 @@
-import * as TYPES from '../actions/TYPES';
+import * as types from '../actions/types';
 
 const initialState = {
 	inventory: [],
@@ -75,14 +75,14 @@ const deleteInventory = (state, action) => {
 
 export const inventoryReducer = (state = initialState, action) => {
     const handlers = {
-        [TYPES.POST_INVENTORY]: inventorySuccess,
-        [TYPES.POST_PROD_FULFILLED]: postProductionFulfilled,
-        [TYPES.PUT_FULFILLED]: putFulfilled,
-        [TYPES.FETCH_INVENTORY_FULFILLED]: fetchFulfilled,
-        [TYPES.FETCH_INVENTORY]: fetchInventory,
-        [TYPES.FETCH_ERROR]: fetchError,
-        [TYPES.EDIT_INVENTORY]: editInventory,
-        [TYPES.DELETE_INVENTORY]: deleteInventory
+        [types.POST_INVENTORY]: inventorySuccess,
+        [types.POST_PROD_FULFILLED]: postProductionFulfilled,
+        [types.PUT_FULFILLED]: putFulfilled,
+        [types.FETCH_INVENTORY_FULFILLED]: fetchFulfilled,
+        [types.FETCH_INVENTORY]: fetchInventory,
+        [types.FETCH_ERROR]: fetchError,
+        [types.EDIT_INVENTORY]: editInventory,
+        [types.DELETE_INVENTORY]: deleteInventory
     }
 
     return handlers[action.type]

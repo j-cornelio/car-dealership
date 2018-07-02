@@ -4,7 +4,7 @@ import SortableTable 			from './material/SortableTable';
 import AddDialog 					from './material/AddDialog';
 import * as inventoryActions    from '../../actions/inventoryActions';
 
-const EmptyTable = () => <p>Please enter inventory data</p>;
+const EmptyTable = () => <p>Inventory is empty.  Please enter inventory data</p>;
 
 class Inventory extends Component{
 

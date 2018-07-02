@@ -1,6 +1,6 @@
 import { Observable } 			         from 'rxjs';
 import { combineEpics } 			       from 'redux-observable';
-import * as TYPES                    from '../actions/TYPES';
+import * as types                    from '../actions/types';
 import {
   fetchInventoryFulfilled,
   postProductFulfilled,
@@ -20,14 +20,14 @@ const api = {
 };
 
 const fetchInventoryEpic = (action$) =>
-  action$.ofType( TYPES.FETCH_INVENTORY )
+  action$.ofType( types.FETCH_INVENTORY )
   .mergeMap(action =>
       api.fetchUser(action.payload) 
         .map( payload => fetchInventoryFulfilled(payload) )
     );
 
 const postInventoryEpic = action$ =>
-  action$.ofType( TYPES.POST_INVENTORY )
+  action$.ofType( types.POST_INVENTORY )
     .mergeMap(action =>
       Observable.ajax.post(URL, action.payload)
         .map(response => postProductFulfilled(response))
@@ -37,7 +37,7 @@ const postInventoryEpic = action$ =>
     );
 
 const putInventoryEpic = action$ =>
-  action$.ofType( TYPES.EDIT_INVENTORY )
+  action$.ofType( types.EDIT_INVENTORY )
     .mergeMap(action => 
       Observable.ajax.put( `${URL}/${action.payload.id}`)
         .map(response => putProductFulfilled())
@@ -47,7 +47,7 @@ const putInventoryEpic = action$ =>
     );
 
 const deleteInventoryEpic = action$ =>
-  action$.ofType( TYPES.DELETE_INVENTORY )
+  action$.ofType( types.DELETE_INVENTORY )
     .mergeMap(action => 
       Observable.ajax.put( `${URL}/${action.payload.id}`)
         .map(response => deleteProductFulfilled())

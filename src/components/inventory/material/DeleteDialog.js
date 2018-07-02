@@ -60,6 +60,8 @@ class DeleteDialog extends Component {
         
           <DialogActions>
             <Button onClick={() => {
+              this.handleClose()
+              
               this.handleDelete(id)
             }} color="primary">
               Delete

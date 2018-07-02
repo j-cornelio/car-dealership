@@ -67,6 +67,8 @@ class EditDialog extends Component {
 
           <DialogActions>
             <Button onClick={() => {
+              this.handleClose()
+              
               this.handleEdit({
                 manufacturer: this.manufacturer.value,
                 make: this.make.value,

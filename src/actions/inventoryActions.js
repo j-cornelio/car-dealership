@@ -1,61 +1,61 @@
-import * as TYPES from './TYPES';
+import * as types from './types';
 
 export const postInventory = (payload) => { 
   return {
-    type: TYPES.POST_INVENTORY,
+    type: types.POST_INVENTORY,
     payload,
   }
 };
 
 export const postProductFulfilled = (payload) => { 
   return {
-    type: TYPES.POST_PROD_FULFILLED,
+    type: types.POST_PROD_FULFILLED,
     payload: payload.response
   }
 };
 
 export const editInventory = (payload) => { 
   return {
-    type: TYPES.EDIT_INVENTORY,
+    type: types.EDIT_INVENTORY,
     payload,
   }
 };
 
 export const putProductFulfilled = (payload) => { 
   return {
-    type: TYPES.PUT_FULFILLED
+    type: types.PUT_FULFILLED
   }
 };
 
 export const postProductRejected = () => { 
   return {
-    type: TYPES.POST_PROD_ERROR
+    type: types.POST_PROD_ERROR
   }
 };
 
 export const fetchInventory = (payload) => { 
   return {
-    type: TYPES.FETCH_INVENTORY,
+    type: types.FETCH_INVENTORY,
     payload,
   }
 };
 
 export const fetchInventoryFulfilled = (payload) => { 
   return {
-    type: TYPES.FETCH_INVENTORY_FULFILLED,
+    type: types.FETCH_INVENTORY_FULFILLED,
     payload,
   }
 };
 
 export const deleteProduct = (payload) => { 
   return {
-    type: TYPES.DELETE_INVENTORY,
+    type: types.DELETE_INVENTORY,
     payload,
   }
 };
 export const deleteProductFulfilled = (payload) => { 
   return {
-    type: TYPES.DELETE_INVENTORY_FULFILLED
+    type: types.DELETE_INVENTORY_FULFILLED
   }
 };
 

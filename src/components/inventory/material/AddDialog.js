@@ -64,6 +64,8 @@ class AddDialog extends Component {
 
           <DialogActions>
             <Button onClick={() => {
+              this.handleClose()
+
               this.handlePost({
                 manufacturer: this.manufacturer.value,
                 make: this.make.value,
@@ -74,7 +76,7 @@ class AddDialog extends Component {
               Save
             </Button>
             <Button onClick={this.handleClose} color="primary" autoFocus>
-              Agree
+              Cancel
             </Button>
           </DialogActions>
 
